@@ -15,7 +15,7 @@ function Home() {
           </div>
 
           {/* Middle Content */}
-          <div className="w-full sm:min-w-[500px] lg:w-3/5 bg-black text-white border border-white/20 p-4 overflow-y-auto max-h-screen">
+          <div className="w-full lg:w-3/5 bg-black text-white border border-white/20 p-4 overflow-y-auto max-h-screen">
             <p>Middle Content starts here...</p>
             <p>lorem1000</p>
           </div>

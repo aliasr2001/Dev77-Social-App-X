@@ -12,6 +12,7 @@ function MidSection (){
             <PostCreateSection/>
             <RefreshPost/>
             <PostCard/>
+            <PostCard/>
           </div>
     )
 }

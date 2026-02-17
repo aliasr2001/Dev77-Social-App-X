@@ -1,6 +1,6 @@
 
 
-function NavLinks({
+function NavLink({
     width = "40px",
     height = "40px",
     text = 'Home',
@@ -36,7 +36,7 @@ function NavLinks({
     )
 }
 
-export default NavLinks
+export default NavLink;
 
 
 {/* <a class="" href="" >

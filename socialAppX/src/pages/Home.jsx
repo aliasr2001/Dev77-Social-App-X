@@ -1,7 +1,7 @@
 import React from 'react'
-import Sidebar from './components/Sidebar'
-import MidSection from './components/MidSection' 
-import RightSection from './components/RightSection'
+import Sidebar from '../components/Sidebar'
+import MidSection from '../components/MidSection' 
+import RightSection from '../components/RightSection'
 
 function Home() {
   return (

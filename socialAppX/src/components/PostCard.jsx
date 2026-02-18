@@ -15,8 +15,8 @@ function PostCard() {
             <div className='userName text-[#71767b]'>@peter_schwaz</div>
             <div className="postDate text-[#71767b]">Feb 15</div>
           </div>
-          <div className="moreOptions justify-end">
-            <svg class="w-6 h-6 text-gray-800 dark:text-[#71767b]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <div className="moreOptions justify-end cursor-pointer p-2 rounded-full hover:bg-[#0F172A] transistion-all">
+            <svg class="w-6 h-6 text-[#71767b] dark:text-[#71767b] hover:text-[#00BFFF]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
               <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 12h.01m6 0h.01m5.99 0h.01" />
             </svg>
           </div>

@@ -4,15 +4,18 @@ function Button(
     width = "15rem",
     bgColor = "white",
     btnText = "Post",
-    hoverbgColor = "gray",
+    hoverbgColor = "#EEEEEE",
     hoverTextColor = "black",
     padding = "0.5rem",
     fontSize = "20px",
     onClick,
     disabled = false,
+    margin = "0",
+    btnTextColor = "black",
+    border = "none",
   }
 ) {
-  const baseClasses = "border border-white flex justify-center rounded-4xl font-bold transition-all duration-300 text-[20px]";
+  const baseClasses = " flex justify-center rounded-4xl font-bold transition-all duration-300 text-[20px]";
   const cursorClass = disabled ? "cursor-not-allowed" : "cursor-pointer";
 
   return (
@@ -23,12 +26,15 @@ function Button(
       className={`${baseClasses} ${cursorClass}`}
       style={{
         backgroundColor: bgColor,
-        color: hoverTextColor,
+        /* apply provided text color prop */
+        color: btnTextColor,
         width: width,
         padding: padding,
         fontSize: fontSize,
         opacity: disabled ? 0.6 : 1,
         pointerEvents: disabled ? "none" : "auto",
+        margin: margin,
+        border: border,
       }}
       onClick={(e) => {
         if (disabled) return;
@@ -37,10 +43,12 @@ function Button(
       onMouseEnter={(e) => {
         if (disabled) return;
         e.currentTarget.style.backgroundColor = hoverbgColor;
+        e.currentTarget.style.color = hoverTextColor;
       }}
       onMouseLeave={(e) => {
         if (disabled) return;
         e.currentTarget.style.backgroundColor = bgColor;
+        e.currentTarget.style.color = btnTextColor;
       }}
     >
       {btnText}

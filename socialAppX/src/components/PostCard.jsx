@@ -35,8 +35,8 @@ function PostCard() {
         <div className='reactSection flex items-center gap-4 mt-2 w-full justify-between'>
           <div className='reactSvgDiv flex items-center gap-4'>
             <ReactionComp/>
-            <ReactionComp pathD='m16 10 3-3m0 0-3-3m3 3H5v3m3 4-3 3m0 0 3 3m-3-3h14v-3' />
-            <ReactionComp pathD='M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z' />
+            <ReactionComp pathD='m16 10 3-3m0 0-3-3m3 3H5v3m3 4-3 3m0 0 3 3m-3-3h14v-3' hoverColor='#2be731' bgCircleColor='rgba(31, 240, 35, 0.1)'/>
+            <ReactionComp pathD='M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z' hoverColor='rgb(230, 34, 247)' bgCircleColor='rgba(217, 29, 255, 0.15)'/>
           </div>
           <div className='shareOptionDiv'></div>
         </div>

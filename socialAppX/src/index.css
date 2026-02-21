@@ -22,3 +22,50 @@
   transition: all 0.3s ease;
   width: 45%;
 }
+
+
+/* Thin, subtle scrollbar for the middle section */
+.mid-section {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.12) transparent;
+}
+
+.mid-section::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mid-section::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mid-section::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.12);
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+  opacity: 0.7;
+}
+
+.mid-section:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+  background-color: rgba(255,255,255,0.16);
+}
+
+/* Optional: slightly hide scrollbar when not interacting */
+.mid-section::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+}
+
+/* styling for reactionComp hover effect */
+.reaction-comp .svgwrapperDiv {
+  color: gray;
+  transition: background-color 0.3s ease;
+}
+
+.reaction-comp:hover .svgwrapperDiv,
+.reaction-comp:hover > span  {
+  color: var(--hoverColor);
+   background-color: var(--bgCircleColor);
+  
+}

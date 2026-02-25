@@ -2,8 +2,16 @@ import LoginWithBtn from "../components/LoginWithBtn";
 import LoginWithGoogle from "../components/LoginWithGoogle";
 import SvgComp from "../components/SvgComp";
 import CreateAccBtn from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+    const navigate = useNavigate();
+
+    const handleSignIn = () => {
+        console.log("Signing in...");
+        navigate('/');
+    }
+
     return (
         <div className="h-screen text-white flex w-full justify-center items-center">
             {/* Login form goes here */}
@@ -17,7 +25,7 @@ function Login() {
                 <div className="signUpDiv">
                     <p className="text-3xl font-bold">Join today.</p>
                     <LoginWithGoogle/>
-                    <LoginWithBtn width="45%" padding="0.5rem 0.5rem" btnText="Sign up With Apple" fontSize="14px" fontWeight="400" margin="0.8rem 0 0 0"/>
+                    <LoginWithBtn width="45%" padding="0.5rem 0.5rem" btnText="Sign in With Apple" fontSize="14px" fontWeight="400" margin="0.8rem 0 0 0"/>
                     <div className="SeparatorDiv w-[45%] mt-2 flex items-center gap-2 text-sm">
                         <div className="sepLine w-full border-b border-gray-700"></div>
                         <span className="Text">OR</span>
@@ -27,7 +35,7 @@ function Login() {
                     <p className="termsText text-xs mt-2 w-[45%]">By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use.</p>
                 </div>
                 
-                <div className="signInDiv">
+                <div onClick={handleSignIn} className="signInDiv">
                     <p className="text-xl">Already have an account?</p>
                     <CreateAccBtn width="45%" padding="0.6rem 0.6rem" btnText="Sign in" fontSize="14px" fontWeight="400" margin="0.5rem 0rem" bgColor="black" btnTextColor="#ffffff" border="1px solid white" hoverbgColor="#111111" hoverTextColor="none"/>
                 </div>

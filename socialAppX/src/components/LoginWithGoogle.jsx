@@ -1,39 +1,38 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LoginWithGoogle = () => {
-
-  // Function to decode the JWT token (unchanged from your snippet)
-  const decodeJWT = (token) => {
-    try {
-      const base64Url = token.split(".")[1];
-      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-      const jsonPayload = decodeURIComponent(
-        atob(base64)
-          .split("")
-          .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-          .join("")
-      );
-      return JSON.parse(jsonPayload);
-    } catch (error) {
-      console.error("Error decoding JWT:", error);
-      return null;
-    }
-  };
+  const navigate = useNavigate();
 
   // The callback function that Google calls after login
-  const handleCredentialResponse = (response) => {
-    console.log("Encoded JWT ID token: " + response.credential);
+  const handleCredentialResponse = async (response) => {
 
-    const responsePayload = decodeJWT(response.credential);
+    if (response.credential) {
+      try {
+        const res = await fetch("http://localhost:5001/api/auth/google", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token: response.credential }),
+        });
 
-    if (responsePayload) {
-      console.log("Decoded JWT ID token fields:");
-      console.log("  Full Name: " + responsePayload.name);
-      console.log("  Given Name: " + responsePayload.given_name);
-      console.log("  Family Name: " + responsePayload.family_name);
-      console.log("  Unique ID: " + responsePayload.sub);
-      console.log("  Profile image URL: " + responsePayload.picture);
-      console.log("  Email: " + responsePayload.email);
+        const data = await res.json();
+        if (res.ok) {
+          console.log("Authentication successful", data);
+          // Save to local storage for the ProtectedRoute to recognize
+          // data.token contains the backend session JWT, data.user contains info
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token); // Save session token
+
+          // Redirect to home
+          navigate('/');
+        } else {
+          console.error("Backend auth failed:", data.message);
+        }
+      } catch (err) {
+        console.error("Network error during auth:", err);
+      }
     }
   };
 
@@ -49,7 +48,7 @@ const LoginWithGoogle = () => {
     script.onload = () => {
       if (window.google) {
         window.google.accounts.id.initialize({
-          client_id: "797655834756-538cgpogukmfie12slbdlr7vjk75kvut.apps.googleusercontent.com",
+          client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
           callback: handleCredentialResponse,
           auto_prompt: false, // matches your data-auto_prompt="false"
         });
@@ -57,7 +56,7 @@ const LoginWithGoogle = () => {
         // 3. Render the button inside the specific div
         window.google.accounts.id.renderButton(
           document.getElementById("googleButtonDiv"),
-          { text: "signin_with" } 
+          { text: "signin_with" }
           // Note: 'filled-blue' becomes 'filled_blue' in JS API
         );
       }
@@ -71,11 +70,11 @@ const LoginWithGoogle = () => {
 
   return (
     <div className="flex justify-center w-full items-start">
-        {/* This is the container where Google will render the button */}
-        <div 
-          id="googleButtonDiv" 
-          className='google-button-container'
-        ></div>
+      {/* This is the container where Google will render the button */}
+      <div
+        id="googleButtonDiv"
+        className='google-button-container'
+      ></div>
     </div>
   );
 };
